@@ -56,7 +56,7 @@ class GetData:
         request_data = opera_json.get_data(self.get_request_data(row))
         return request_data
 
-    #获取预期结果
+    #获取预期的结果
     def get_expect_data(self,row):
         col = data_config.get_expect()
         expect = self.opera_exel.get_data(row,col)
