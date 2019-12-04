@@ -7,6 +7,7 @@ class RunMethod:
             res = requests.post(url=url,data=data,headers=header).json()
         else:
             res = requests.post(url=url, data=data).json()
+            print(res.status_code)
         return res
 
     def get_main(self,url,data=None,header=None):
