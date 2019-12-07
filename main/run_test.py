@@ -1,10 +1,9 @@
 #coding:utf-8
 from base.runmethod import RunMethod
 from data.get_data import GetData
-from util.common_util import CommonUtil
 import sys
 sys.path.append("D:\\www\\ImoocInterface")
-
+from util.common_util import CommonUtil
 class RunTest:
     def __init__(self):
         self.run_method = RunMethod()
@@ -23,7 +22,7 @@ class RunTest:
             header = self.data.is_header(i)
             if is_run:
                 res = self.run_method.run_main(method,url,data,header)
-                if util.common_util.is_contain(expect,res):
+                if self.util.common_util.is_contain(expect,res):
                     print("测试通过")
                 else:
                     print("测试失败")
