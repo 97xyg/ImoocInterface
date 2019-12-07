@@ -1,4 +1,4 @@
-#coding:utf-8
+#coding=utf-8
 class CommonUtil:
     def is_contain(self,str_one,str_two):
         '''
@@ -14,3 +14,7 @@ class CommonUtil:
         else:
             flag = False
         return flag
+
+
+if __name__ == "__main__":
+    CommonUtil()

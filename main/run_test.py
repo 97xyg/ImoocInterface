@@ -1,9 +1,11 @@
 #coding:utf-8
 from base.runmethod import RunMethod
 from data.get_data import GetData
+from util.common_util import CommonUtil
 import sys
 sys.path.append("D:\\www\\ImoocInterface")
-from util.common_util import CommonUtil
+
+
 class RunTest:
     def __init__(self):
         self.run_method = RunMethod()
