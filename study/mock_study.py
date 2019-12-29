@@ -11,6 +11,10 @@ def post_request(url,data):
     res = requests.post(url,data).json()
     return res
 
+def get_request(url,data):
+    res = requests.get(url,data).json()
+    return res
+
 class TestLogin(unittest.TestCase):
     def setUp(self):
         print("case开始执行")
