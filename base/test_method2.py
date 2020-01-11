@@ -1,7 +1,7 @@
 #coding = utf-8
 import unittest
 import HTMLTestRunner
-from demo1 import RunMain
+from other.demo1 import RunMain
 
 class TestMethod(unittest.TestCase):
     def setUp(self):

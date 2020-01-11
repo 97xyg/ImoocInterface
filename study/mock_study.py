@@ -8,12 +8,14 @@ data = {
     "password":"123456"
 }
 def post_request(url,data):
-    res = requests.post(url,data).json()
+    res = requests.post(url,data=data).json()
     return res
 
 def get_request(url,data):
-    res = requests.get(url,data).json()
+    res = requests.get(url,params=data).json()
     return res
+
+print(post_request('http://127.0.0.1:8801/login',data))
 
 class TestLogin(unittest.TestCase):
     def setUp(self):
@@ -29,8 +31,8 @@ class TestLogin(unittest.TestCase):
         }
         sucess_test = mock.Mock(return_value=data)
         post_request = sucess_test
-        res = post_request
-        self.assertEqual("111222",res())
+        #res = post_request
+        #self.assertEqual("111222",res())
 
-if __name__ == "__main__":
-    unittest.main()
+#if __name__ == "__main__":
+#    unittest.main()

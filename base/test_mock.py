@@ -1,9 +1,7 @@
 #coding = utf-8
 import unittest
-import HTMLTestRunner
 import pprint
-from demo1 import RunMain
-from mock import mock
+from other.demo1 import RunMain
 from mock_demo import mock_test
 
 class TestMethod(unittest.TestCase):
