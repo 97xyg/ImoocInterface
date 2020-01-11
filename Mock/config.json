@@ -1,0 +1,35 @@
+[{
+    "request":
+        {
+          "method": "post",
+          "uri": "/login"
+        },
+    "response":
+        {
+          "json": {
+              "user": "11111",
+              "passwd": "22222",
+              "message": "this is test"
+          }
+        }
+},
+{
+    "request":
+        {
+          "uri": "/register"
+        },
+    "response":
+        {
+          "text": "Mushishi is register"
+        }
+},
+{
+    "request":
+        {
+          "uri": "/loginout"
+        },
+    "response":
+        {
+          "text": "Mushishi is loginout"
+        }
+}]
