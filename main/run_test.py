@@ -1,7 +1,6 @@
 #coding:utf-8
-from base.runmethod import RunMethod
+from other.base import RunMethod
 from data.get_data import GetData
-from util.common_util import CommonUtil
 import sys
 sys.path.append("D:\\www\\ImoocInterface")
 

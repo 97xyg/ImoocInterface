@@ -1,6 +1,11 @@
 #coding=utf-8
 import requests
+import sys
+import os
+base_path = os.getcwd()
+sys.path.append(base_path)
 import unittest
+from Base.base_request import request
 url = "http://www.imooc.com"
 data = {
     "username":"1111",
@@ -63,14 +68,12 @@ class TestCase01(unittest.TestCase):
     def test_05(self):
         print("执行case05")
         flag = "111"
-        flag = "2222"
+        flag1 = "2222"
         self.assertEqual(flag,flag1,msg="两个字符串不相等")
 
     def test_06(self):
-        print("执行case06")
-        flag = "abcdefgaabdedg"
-        s = "aabd"
-        self.assertIn(s,flag,msg="不包含")
+        res = request.run_main('get',url,data)
+        print(res)
 
 if __name__ == "__main__":
     #unittest.main()
