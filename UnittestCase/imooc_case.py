@@ -55,6 +55,12 @@ class ImoocCase(unittest.TestCase):
         print(res)
         self.assertEqual(res['errorCode'],1000)
 
+    def test_register(self):
+        url = "register"
+        data = {
+            "user":"11111"
+        }
+
 if __name__ =="__main__":
     suite = unittest.TestSuite()
     suite.addTest(ImoocCase('test_banner'))
