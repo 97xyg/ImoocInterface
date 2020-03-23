@@ -32,7 +32,7 @@ class HandExcel:
         return row
 
     def get_rows_value(self,row):
-        #
+        #获取某一行的内容
         row_list = []
         for i in self.get_sheet_data()[row]:
             row_list.append(i.value)
