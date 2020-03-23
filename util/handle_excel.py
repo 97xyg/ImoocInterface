@@ -19,15 +19,28 @@ class HandExcel:
         if index == None:
             index = 0
         data = self.load_excel()[sheet_name[index]]
+        return data
 
     def get_cell_value(self,row,cols):
         # 获取一个单元格的内容
-        data = self.get_sheet_data().cell(row=row,column=cols)
+        data = self.get_sheet_data().cell(row=row,column=cols).value
         return data
+
+    def get_rows(self):
+        #获取行数
+        row = self.get_sheet_data().max_row
+        return row
+
+    def get_rows_value(self,row):
+        #
+        row_list = []
+        for i in self.get_sheet_data()[row]:
+            row_list.append(i.value)
+        return row_list
 
 if __name__ == "__main__":
     handle = HandExcel()
-    print(handle.get_cell_value(2,5))
+    print(handle.get_rows_value(2))
 
 
 
