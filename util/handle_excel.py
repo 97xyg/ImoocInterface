@@ -38,6 +38,8 @@ class HandExcel:
             row_list.append(i.value)
         return row_list
 
+excel_data = HandExcel()
+
 if __name__ == "__main__":
     handle = HandExcel()
     print(handle.get_rows_value(2))
