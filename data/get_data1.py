@@ -1,7 +1,7 @@
 #coding:utf-8
-from util.operation_exel import OperationExel
+from Util.operation_exel import OperationExel
 import data_config
-from util.operation_json import OperationJson
+from Util.operation_json import OperationJson
 class GetData:
     def __init__(self):
         self.opera_exel = OperationExel()

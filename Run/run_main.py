@@ -4,7 +4,7 @@ import os
 base_path = os.getcwd()
 import unittest
 sys.path.append(base_path)
-from util.handle_excel import excel_data
+from Util.handle_excel import excel_data
 from Base.base_request import request
 
 #['imooc_001', '登陆', 'yes', None, 'login', 'post', '{"username":"111111"}', 'yes', 'message', None]

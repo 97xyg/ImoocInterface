@@ -1,9 +1,9 @@
 #coding:utf-8
 import sys
 sys.path.append("D:\\www\\ImoocInterface")
-from util.operation_exel import OperationExel
+from Util.operation_exel import OperationExel
 import data.data_config
-from util.operation_json import OperationJson
+from Util.operation_json import OperationJson
 class GetData:
     def __init__(self):
         self.opera_exel = OperationExel()
