@@ -1,6 +1,12 @@
 #coding=utf-8
+import sys
+import os
+import configparser
+base_path = os.getcwd()
+sys.path.append(base_path)
 import requests
 import json
+from Util.handle_init import handle_ini
 
 class BaseRequest:
     def send_post(self,url,data):
@@ -13,8 +19,13 @@ class BaseRequest:
         res = requests.get(url=url,params=data).text
         return res
 
+    # 执行方法，传递method、url、data参数
     def run_main(self,method,url,data):
-        #执行方法，传递method、url、data参数
+        base_url = handle_ini.get_value('host')
+        if 'http' in base_url:
+            url = base_url+url
+        print(url)
+        print('**********')
         if method == 'get':
             res = self.send_get(url,data)
         else:
@@ -25,7 +36,10 @@ class BaseRequest:
             print("这个结果是一个text")
         return res
 
-request = BaseRequest()
+if __name__ == "__main__":
+    request = BaseRequest()
+    request.run_main('post','login',"{'username':'111111'}")
+
 
 
 

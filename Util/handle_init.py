@@ -26,6 +26,7 @@ class HandleInit:
             
         return data
 
+handle_ini = HandleInit()
 if __name__ == "__main__":
     hi = HandleInit()
-    print(hi.get_value("password"))
+    print(hi.get_value("host"))
