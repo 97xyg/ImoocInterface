@@ -6,6 +6,7 @@ base_path = os.getcwd()
 sys.path.append(base_path)
 import requests
 import json
+from Util.handle_json import get_value
 from Util.handle_init import handle_ini
 
 class BaseRequest:
@@ -22,6 +23,7 @@ class BaseRequest:
     
     def run_main(self,method,url,data):
         # 执行方法，传递method、url、data参数
+        return get_value(url)
         base_url = handle_ini.get_value('host')
         if 'http' not in url:
             url = base_url+url
@@ -33,15 +35,15 @@ class BaseRequest:
             res = self.send_get(url,data)
         else:
             res =self.send_post(url,data)
-        try:
-            res = json.loads(res)
-        except:
-            print("这个结果是一个text")
+            try:
+                res = json.loads(res)
+            except:
+                print("这个结果是一个text")
         return res
-
+request = BaseRequest()
 if __name__ == "__main__":
     request = BaseRequest()
-    request.run_main('get','http://www.imooc.com/login',"{'username':'111111'}")
+    request.run_main('get','login',"{'username':'111111'}")
 
 
 
