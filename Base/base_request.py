@@ -19,12 +19,15 @@ class BaseRequest:
         res = requests.get(url=url,params=data).text
         return res
 
-    # 执行方法，传递method、url、data参数
+    
     def run_main(self,method,url,data):
+        # 执行方法，传递method、url、data参数
         base_url = handle_ini.get_value('host')
-        if 'http' in base_url:
+        if 'http' not in url:
             url = base_url+url
+            print(url)
         print(url)
+
         print('**********')
         if method == 'get':
             res = self.send_get(url,data)
@@ -38,7 +41,7 @@ class BaseRequest:
 
 if __name__ == "__main__":
     request = BaseRequest()
-    request.run_main('post','login',"{'username':'111111'}")
+    request.run_main('get','http://www.imooc.com/login',"{'username':'111111'}")
 
 
 
