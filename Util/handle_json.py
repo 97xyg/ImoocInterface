@@ -6,11 +6,15 @@ import configparser
 base_path = os.getcwd()
 sys.path.append(base_path)
 
-def read_json():
-    with open(base_path+"/Config/user_data.json") as f:
+def read_json(file_name=None):
+    if file_name == None:
+        file_path = base_path+"/Config/user_data.json"
+    else:
+        file_path = base_path+file_name
+    with open(file_path) as f:
         data = json.load(f)
     return data
 
-def get_value(key):
-    data = read_json()
+def get_value(key,file_name=None):
+    data = read_json(file_name)
     return data[key]
