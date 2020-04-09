@@ -23,7 +23,7 @@ class BaseRequest:
     
     def run_main(self,method,url,data):
         # 执行方法，传递method、url、data参数
-        return get_value(url)
+        #return get_value(url)
         base_url = handle_ini.get_value('host')
         if 'http' not in url:
             url = base_url+url

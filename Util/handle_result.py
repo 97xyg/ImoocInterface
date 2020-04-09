@@ -18,7 +18,7 @@ def handle_result(url,code):
     data = get_value(url,"/Config/code_message.json")
     if data != None:
         for i in data:
-            message = i.get(code)
+            message = i.get(str(code))
             if message:
                 return message
     return None
