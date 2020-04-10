@@ -5,6 +5,7 @@ import configparser
 base_path = os.getcwd()
 sys.path.append(base_path)
 import json
+from deepdiff import DeepDiff
 from Util.handle_json import get_value
 #print(get_value("api3/getbanneradvertver2","/Config/code_message.json"))
 
@@ -23,6 +24,18 @@ def handle_result(url,code):
                 return message
     return None
 
+def handle_result_json():
+    #校验格式
+    dict1={"aaa":"AAA","bbb":"BBBB","CC":[{"11":"22"},{"11":"44"}]}
+    dict2={"aaa":"123","bbb":"456","CC":[{"11":"111"},{"11":"44"}]}
+    cmp_dict = DeepDiff(dict1,dict2,ignore_order=True).to_dict()
+    #print(cmp_dict)
+    if cmp_dict.get("dictionary_item_added"):
+        print("case失败")
+    else:
+        print("case成功")
+
 if __name__ == "__main__":
-    print(handle_result("api3/getbanneradvertver2","10002"))
+    #print(handle_result("api3/getbanneradvertver2","10002"))
+    handle_result_json()
 
