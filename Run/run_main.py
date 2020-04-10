@@ -19,16 +19,27 @@ class RunMain:
                 method = data[6]
                 url = data[5]
                 data1 = data[7]
+                expect_method = data[10]
+                expect_result = data[11]
                 res = request.run_main(method,url,data1)
-                code = res['errorCode']
+                code = str(res['errorCode'])
                 message = res['errorDesc']
-                config_message = handle_result(url,code)
-                print("message-----",message,"---------config_message---->",config_message)
-                #print(res)
-                if message == config_message:
-                    print("测试case通过")
-                else:
-                    print("测试case失败")
+                if expect_method == 'mec':
+                    config_message = handle_result(url,code)
+                    if message == config_message:
+                        print("测试case通过")
+                    else:
+                        print("测试case失败")
+                
+                if expect_method == 'errorcode':
+                    if expect_result == code:
+                        print("测试case通过")
+                    else:
+                        print("测试case失败")
+                if expect_method == 'json':
+                    print("没有找到执行方式")
+
+
 
 if __name__ == "__main__":
     run =RunMain()

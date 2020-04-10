@@ -27,7 +27,7 @@ class BaseRequest:
         base_url = handle_ini.get_value('host')
         if 'http' not in url:
             url = base_url+url
-        print(url)
+        #print(url)
 
         if method == 'get':
             res = self.send_get(url,data)

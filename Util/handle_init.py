@@ -16,7 +16,7 @@ class HandleInit:
         #获取ini里面的value
         if node == None:
             node = 'server'
-        print(node)
+        #print(node)
         cf = self.load_ini()
         try:
             data = cf.get(node,key)
