@@ -5,7 +5,7 @@ base_path = os.getcwd()
 import unittest
 sys.path.append(base_path)
 from Util.handle_excel import excel_data
-from Util.handle_result import handle_result
+from Util.handle_result import handle_result,handle_result_json,get_result_json
 from Base.base_request import request
 
 #['imooc_001', '登陆', 'yes', None, 'login', 'post', '{"username":"111111"}', 'yes', 'message', None]
@@ -22,6 +22,7 @@ class RunMain:
                 expect_method = data[10]
                 expect_result = data[11]
                 res = request.run_main(method,url,data1)
+                #print(res)
                 code = str(res['errorCode'])
                 message = res['errorDesc']
                 if expect_method == 'mec':
@@ -37,7 +38,16 @@ class RunMain:
                     else:
                         print("测试case失败")
                 if expect_method == 'json':
-                    print("没有找到执行方式")
+                    if code == 1000:
+                        status_str='sucess'
+                    else:
+                        status_str='error'
+                    expect_result = get_result_json(url,status_str)
+                    result = handle_result_json(res,expect_result)
+                    if result:
+                        print("case执行成功")
+                    else:
+                        print("case执行失败")
 
 
 
