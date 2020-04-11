@@ -24,18 +24,20 @@ def handle_result(url,code):
                 return message
     return None
 
-def handle_result_json():
+def handle_result_json(dict1,dict2):
     #校验格式
-    dict1={"aaa":"AAA","bbb":"BBBB","CC":[{"11":"22"},{"11":"44"}]}
-    dict2={"aaa":"123","bbb":"456","CC":[{"11":"111"},{"11":"44"}]}
+    #dict1={"aaa":"AAA","bbb":"BBBB","CC":[{"11":"22"},{"11":"44"}]}
+    #dict2={"aaa":"123","bbb":"456","CC":[{"11":"111"},{"11":"44"}]}
     cmp_dict = DeepDiff(dict1,dict2,ignore_order=True).to_dict()
-    #print(cmp_dict)
+    print(cmp_dict)
     if cmp_dict.get("dictionary_item_added"):
-        print("case失败")
+        return False
     else:
-        print("case成功")
+        return True
 
 if __name__ == "__main__":
     #print(handle_result("api3/getbanneradvertver2","10002"))
-    handle_result_json()
+    dict2={"aaa":"ddd","aaa1":"A1A","bbb":"BBBB","CC":[{"11":"22"},{"11":"44"}]}
+    dict1={"aaa":"AAA","bbb":"BBBB","aaa3":"A1A","CC":[{"11":"111"},{"11":"44"}]}
+    print(handle_result_json(dict1,dict2))
 
