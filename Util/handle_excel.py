@@ -38,11 +38,20 @@ class HandExcel:
             row_list.append(i.value)
         return row_list
 
+    def excel_write_data(self,row,cols,value):
+        #写入数据
+        wb = self.load_excel()
+        wr = wb.active
+        wr.cell(row,cols,value)
+        wb.save(base_path+"/Case/imooc.xlsx")
+
+
 excel_data = HandExcel()
 
 if __name__ == "__main__":
     handle = HandExcel()
-    print(handle.get_rows_value(2))
+    #print(handle.get_rows_value(2))
+    handle.excel_write_data(2,13,"通过")
 
 
 

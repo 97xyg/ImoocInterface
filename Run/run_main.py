@@ -5,9 +5,9 @@ base_path = os.getcwd()
 import unittest
 sys.path.append(base_path)
 from Util.handle_excel import excel_data
+import json
 from Util.handle_result import handle_result,handle_result_json,get_result_json
 from Base.base_request import request
-
 #['imooc_001', '登陆', 'yes', None, 'login', 'post', '{"username":"111111"}', 'yes', 'message', None]
 class RunMain:
     def run_case(self):
@@ -28,15 +28,16 @@ class RunMain:
                 if expect_method == 'mec':
                     config_message = handle_result(url,code)
                     if message == config_message:
-                        print("测试case通过")
+                        excel_data.excel_write_data(i+2,13,"通过")
                     else:
-                        print("测试case失败")
-                
+                        excel_data.excel_write_data(i+2,13,"失败")
+                        excel_data.excel_write_data(i+2,14,json.dumps(res))
                 if expect_method == 'errorcode':
                     if expect_result == code:
-                        print("测试case通过")
+                        excel_data.excel_write_data(i+2,13,"通过")
                     else:
-                        print("测试case失败")
+                        excel_data.excel_write_data(i+2,13,"失败")
+                        excel_data.excel_write_data(i+2,14,json.dumps(res))
                 if expect_method == 'json':
                     if code == 1000:
                         status_str='sucess'
@@ -45,11 +46,10 @@ class RunMain:
                     expect_result = get_result_json(url,status_str)
                     result = handle_result_json(res,expect_result)
                     if result:
-                        print("case执行成功")
+                        excel_data.excel_write_data(i+2,13,"通过")
                     else:
-                        print("case执行失败")
-
-
+                        excel_data.excel_write_data(i+2,13,"失败")
+                        excel_data.excel_write_data(i+2,14,json.dumps(res))
 
 if __name__ == "__main__":
     run =RunMain()
