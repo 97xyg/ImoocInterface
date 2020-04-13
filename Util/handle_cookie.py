@@ -6,28 +6,21 @@ import configparser
 base_path = os.getcwd()
 sys.path.append(base_path)
 from Util.handle_json import get_value,read_json,write_value
-#1、获取cookie
-#2、写入cookie
-#3、是否携带cookie
-'''
-data = {
-        "app":{
-            "aaaa":"bbbbbb"
-            }
-    }
-'''
-'''
-{
-        "aaaa":"bbbbbb"}
-    }
-'''
-def get_cookie_value():
-    data1 = {
-            "aaaa":"bbbbbb"
-        }
+
+def get_cookie_value(cookie_key):
+    #获取cookie
     data = read_json("/Config/cookie.json")
-    data["web"] = data1
-    write_value(data)
+    return data[cookie_key]
+
+def write_cookie(data,cookie_key):
+    #写入cookie
+    data1 = read_json("/Config/cookie.json")
+    data1[cookie_key] = data
+    write_value(data1)
+
 
 if __name__ == "__main__":
-    get_cookie_value()
+    data = {
+        "aaaa":"11111111111111"
+    }
+    print(write_cookie(data,'web'))
