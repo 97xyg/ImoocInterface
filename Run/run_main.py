@@ -27,7 +27,14 @@ class RunMain:
                 cookie_method = data[9]
                 if cookie_method == 'yes':
                     cookie = get_cookie_value('app')
-                res = request.run_main(method,url,data1,proxies,cookie)
+                if cookie_method == 'write':
+                    '''
+                    必须是获取到cookie
+                    '''
+                    get_cookie = 'yes'
+                res = request.run_main(method,url,data1,proxies,cookie,get_cookie)
+                if cookie_method == 'write':
+                    write_cookie(res,'app')
                 #print(res)
                 code = str(res['errorCode'])
                 message = res['errorDesc']
