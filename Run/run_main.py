@@ -16,6 +16,7 @@ class RunMain:
         rows = excel_data.get_rows()
         for i in range(rows):
             cookie = None
+            get_cookie = None
             data = excel_data.get_rows_value(i+2)
             is_run = data[2]
             if is_run == 'yes':
@@ -31,12 +32,11 @@ class RunMain:
                     '''
                     必须是获取到cookie
                     '''
-                    get_cookie = 'yes'
+                    get_cookie = {"is_cookie":"yes"}
                 res = request.run_main(method,url,data1,proxies,cookie,get_cookie)
-                if cookie_method == 'write':
-                    write_cookie(res,'app')
-                #print(res)
+                #print(code)
                 code = str(res['errorCode'])
+                #print(res['errorCode'])
                 message = res['errorDesc']
                 if expect_method == 'mec':
                     config_message = handle_result(url,code)

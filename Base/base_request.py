@@ -6,6 +6,7 @@ base_path = os.getcwd()
 sys.path.append(base_path)
 import requests
 import json
+from Util.handle_cookie import write_cookie
 from Util.handle_json import get_value
 from Util.handle_init import handle_ini
 proxies={'http':'http://localhost:8888','https':'http://localhost:8888'}
@@ -14,18 +15,23 @@ class BaseRequest:
         #发送post请求
         response = requests.post(url=url,data=data,proxies=proxies,cookies=cookie)
         if get_cookie != None:
-            res = response.cookies
-        else:
-            res = response.text
+            '''
+            {"is_cookie":"app"}
+            '''
+            cookie_value_jar = response.cookies
+            cookie_value = requests.utils.dict_from_cookiejar(cookie_value_jar)
+            write_cookie(cookie_value,get_cookie['is_cookie'])
+        res = response.text
         return res
 
     def send_get(self,url,data,proxies=proxies,cookie=None,get_cookie=None):
         #发送get请求
         response = requests.get(url=url,params=data,proxies=proxies,cookies=cookie)
         if get_cookie != None:
-            res = response.cookies
-        else:
-            res = response.text
+            cookie_value_jar = response.cookies
+            cookie_value = requests.utils.dict_from_cookiejar(cookie_value_jar)
+            write_cookie(cookie_value,get_cookie['is_cookie'])
+        res = response.text
         return res
 
     
