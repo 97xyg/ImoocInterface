@@ -6,6 +6,7 @@ import unittest
 sys.path.append(base_path)
 from Util.handle_excel import excel_data
 import json
+from Util.handle_header import get_header
 from Util.handle_result import handle_result,handle_result_json,get_result_json
 from Util.handle_cookie import write_cookie,get_cookie_value
 from Base.base_request import request
@@ -17,12 +18,14 @@ class RunMain:
         for i in range(rows):
             cookie = None
             get_cookie = None
+            header = None
             data = excel_data.get_rows_value(i+2)
             is_run = data[2]
             if is_run == 'yes':
                 method = data[6]
                 url = data[5]
                 data1 = data[7]
+                is_header = data[9]
                 expect_method = data[10]
                 expect_result = data[11]
                 cookie_method = data[9]
@@ -32,8 +35,10 @@ class RunMain:
                     '''
                     必须是获取到cookie
                     '''
-                    get_cookie = {"is_cookie":"yes"}
-                res = request.run_main(method,url,data1,proxies,cookie,get_cookie)
+                    get_cookie = {"is_cookie":"app"}
+                if is_header == 'yes':
+                    header = get_header()
+                res = request.run_main(method,url,data1,cookie,get_cookie,header)
                 #print(code)
                 code = str(res['errorCode'])
                 #print(res['errorCode'])
