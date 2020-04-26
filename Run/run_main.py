@@ -28,6 +28,9 @@ class RunMain:
                 is_header = data[9]
                 expect_method = data[10]
                 expect_result = data[11]
+                condition = data[3]
+                if condition:
+                    pass
                 cookie_method = data[9]
                 if cookie_method == 'yes':
                     cookie = get_cookie_value('app')
