@@ -45,13 +45,22 @@ class HandExcel:
         wr.cell(row,cols,value)
         wb.save(base_path+"/Case/imooc.xlsx")
 
+    def get_columns_value(self,key):
+        #获取某一列的数据
+        columns_list = []
+        columns_list_data = self.get_sheet_data()['A']
+        for i in columns_list_data:
+            columns_list.append(i.value)
+        return columns_list
+
+
 
 excel_data = HandExcel()
 
 if __name__ == "__main__":
     handle = HandExcel()
     #print(handle.get_rows_value(2))
-    handle.excel_write_data(2,13,"通过")
+    print(handle.get_columns_value('A'))
 
 
 
