@@ -45,13 +45,25 @@ class HandExcel:
         wr.cell(row,cols,value)
         wb.save(base_path+"/Case/imooc.xlsx")
 
-    def get_columns_value(self,key):
+    def get_columns_value(self,key=None):
         #获取某一列的数据
         columns_list = []
-        columns_list_data = self.get_sheet_data()['A']
+        if key == None:
+            key = 'A' 
+        columns_list_data = self.get_sheet_data()[key]
         for i in columns_list_data:
             columns_list.append(i.value)
         return columns_list
+
+    def get_rows_number(self,case_id):
+        #获取行号
+        num = 1
+        cols_data = self.get_columns_value()
+        for col_data in cols_data:
+            if case_id == col_data:
+                return num
+            num = num+1
+        return num
 
 
 
@@ -60,8 +72,8 @@ excel_data = HandExcel()
 if __name__ == "__main__":
     handle = HandExcel()
     #print(handle.get_rows_value(2))
-    print(handle.get_columns_value('A'))
-
+    print(handle.get_rows_number('imooc_001'))
+    print(handle.get_rows_value(3))
 
 
 
