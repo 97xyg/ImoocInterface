@@ -9,6 +9,7 @@ import json
 from Util.handle_header import get_header
 from Util.handle_result import handle_result,handle_result_json,get_result_json
 from Util.handle_cookie import write_cookie,get_cookie_value
+from Util.condition_data import get_data
 from Base.base_request import request
 #['imooc_001', '登陆', 'yes', None, 'login', 'post', '{"username":"111111"}', 'yes', 'message', None]
 proxies={'http':'http://localhost:8888','https':'http://localhost:8888'}
@@ -19,9 +20,14 @@ class RunMain:
             cookie = None
             get_cookie = None
             header = None
+            depend_data = None
             data = excel_data.get_rows_value(i+2)
             is_run = data[2]
             if is_run == 'yes':
+                is_depend = data[3]
+                if is_depend:
+                    #获取依赖数据
+                    depend_data = get_data(is_depend)
                 method = data[6]
                 url = data[5]
                 data1 = data[7]

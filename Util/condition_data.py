@@ -13,7 +13,7 @@ def split_data(data):
     return case_id,rule_data
 
 def depend_data(data):
-    #获取依赖数据
+    #获取依赖数据结果集
     case_id = split_data(data)[0]
     row_number = excel_data.get_rows_number(case_id)
     data = excel_data.get_cell_value(row_number,14)
@@ -25,6 +25,12 @@ def get_depend_data(res_data,key):
     madle = json_exe.find(res_data)
     return [math.value for math in madle][0]
 
+
+def get_data(data):
+    #获取依赖数据
+    res_data = depend_data(data)
+    rule_data = split_data(data)[1]
+    return get_depend_data(res_data,rule_data)
 
 if __name__ == "__main__":
     #print(depend_data("imooc_007>data:banner:id"))
