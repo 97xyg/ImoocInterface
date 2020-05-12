@@ -25,19 +25,24 @@ class RunMain:
             is_run = data[2]
             if is_run == 'yes':
                 is_depend = data[3]
+                data1 = json.loads(data[7])
                 if is_depend:
                     #获取依赖数据
+                    depend_key = data[4]
+                    
                     depend_data = get_data(is_depend)
+                    #print(depend_data)
+                    data1[depend_key] = depend_data
                 method = data[6]
                 url = data[5]
-                data1 = data[7]
+                
                 is_header = data[9]
                 expect_method = data[10]
                 expect_result = data[11]
                 condition = data[3]
                 if condition:
                     pass
-                cookie_method = data[9]
+                cookie_method = data[8]
                 if cookie_method == 'yes':
                     cookie = get_cookie_value('app')
                 if cookie_method == 'write':

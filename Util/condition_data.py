@@ -5,9 +5,11 @@ base_path = os.getcwd()
 sys.path.append(base_path)
 from Util.handle_excel import excel_data
 from jsonpath_rw import parse
+import json
 
 def split_data(data):
     #imooc_005>data:banner:id
+    #print("----->",data)
     case_id = data.split(">")[0]
     rule_data = data.split(">")[1]
     return case_id,rule_data
@@ -21,6 +23,8 @@ def depend_data(data):
 
 def get_depend_data(res_data,key):
     #获取依赖字段
+    res_data = json.loads(res_data)
+    #print("------<<<<<",key)
     json_exe = parse(key)
     madle = json_exe.find(res_data)
     return [math.value for math in madle][0]
