@@ -65,15 +65,22 @@ class HandExcel:
             num = num+1
         return num
 
+    def get_excel_data(self):
+        #获取excel里面所有的数据
+        data_list = []
+        for i in range(self.get_rows()):
+            data_list.append(self.get_rows_value(i+2))
+
+        return data_list
 
 
-excel_data = HandExcel()
+#excel_data = HandExcel()
 
 if __name__ == "__main__":
     handle = HandExcel()
     #print(handle.get_rows_value(2))
-    print(handle.get_rows_number('imooc_001'))
-    print(handle.get_rows_value(3))
+    #print(handle.get_rows_number('imooc_001'))
+    print(handle.get_excel_data())
 
 
 
