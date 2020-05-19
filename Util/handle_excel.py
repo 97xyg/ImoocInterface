@@ -74,7 +74,7 @@ class HandExcel:
         return data_list
 
 
-#excel_data = HandExcel()
+excel_data = HandExcel()
 
 if __name__ == "__main__":
     handle = HandExcel()
