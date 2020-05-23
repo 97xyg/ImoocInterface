@@ -12,6 +12,7 @@ from Util.handle_result import handle_result,handle_result_json,get_result_json
 from Util.handle_cookie import write_cookie,get_cookie_value
 from Util.condition_data import get_data
 from Base.base_request import request
+import HTMLTestRunner
 data = excel_data.get_excel_data()
 
 @ddt.ddt
@@ -121,4 +122,10 @@ class TestRunCaseDdt(unittest.TestCase):
                     raise e
 
 if __name__ == "__main__":
-    unittest.main()
+    case_path = base_path+"/Run"
+    report_path = base_path+"/Report/report.html"
+    discover = unittest.defaultTestLoader.discover(case_path,pattern="run_case_*.py")
+    #unittest.TextTestRunner().run(discover)
+    with open(report_path,"wb") as f:
+        runner = HTMLTestRunner.HTMLTestRunner(stream=f,title="Mushishi",description="this is test")
+        runner.run(discover)
