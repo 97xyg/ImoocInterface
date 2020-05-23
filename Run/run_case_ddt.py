@@ -47,9 +47,7 @@ class TestRunCaseDdt(unittest.TestCase):
                 if cookie_method == 'yes':
                     cookie = get_cookie_value('app')
                 if cookie_method == 'write':
-                    '''
-                    必须是获取到cookie
-                    '''
+                    ''' 必须是获取到cookie'''
                     get_cookie = {"is_cookie":"app"}
                 if is_header == 'yes':
                     header = get_header()
@@ -58,19 +56,27 @@ class TestRunCaseDdt(unittest.TestCase):
                 code = str(res['errorCode'])
                 #print(res['errorCode'])
                 message = res['errorDesc']
+                #message+errorcode
+                
                 if expect_method == 'mec':
                     config_message = handle_result(url,code)
-                    if message == config_message:
-                        excel_data.excel_write_data(i,13,"通过")
-                    else:
-                        excel_data.excel_write_data(i,13,"失败")
-                        excel_data.excel_write_data(i,14,json.dumps(res))
+                    '''
+                        if message == config_message:
+                            excel_data.excel_write_data(i,13,"通过")
+                        else:
+                            excel_data.excel_write_data(i,13,"失败")
+                            excel_data.excel_write_data(i,14,json.dumps(res))
+                    '''
+                    self.assertEqual(message,config_message)
                 if expect_method == 'errorcode':
+                    '''
                     if expect_result == code:
                         excel_data.excel_write_data(i,13,"通过")
                     else:
                         excel_data.excel_write_data(i,13,"失败")
                         excel_data.excel_write_data(i,14,json.dumps(res))
+                    '''
+                    self.assertEqual(expect_result,code)
                 if expect_method == 'json':
                     if code == 1000:
                         status_str='sucess'
@@ -78,11 +84,14 @@ class TestRunCaseDdt(unittest.TestCase):
                         status_str='error'
                     expect_result = get_result_json(url,status_str)
                     result = handle_result_json(res,expect_result)
+                    '''
                     if result:
                         excel_data.excel_write_data(i,13,"通过")
                     else:
                         excel_data.excel_write_data(i,13,"失败")
                         excel_data.excel_write_data(i,14,json.dumps(res))
+                    '''
+                    self.assertTrue(result)
 
 if __name__ == "__main__":
     unittest.main()
